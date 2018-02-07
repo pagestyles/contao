@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM php:apache
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
@@ -30,5 +30,7 @@ RUN echo "innodb_file_per_table = 1" >>/etc/mysql/conf.d/mariadb.cnf
 
 RUN echo "[program:mysqld]\ncommand=mysqld">/etc/supervisor/conf.d/mysql.conf
 RUN echo "[program:apache]\ncommand=apache2-foreground">/etc/supervisor/conf.d/apache.conf
+
+VOLUME /var/lib/mysql
 
 CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
