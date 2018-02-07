@@ -24,6 +24,7 @@ RUN mysqld_safe & until mysqladmin ping 2>/dev/null; do sleep 1; done && \
     mysql -uroot -e "CREATE USER 'contao'@'localhost' IDENTIFIED BY 'contao';" && \
     mysql -uroot -e "GRANT ALL PRIVILEGES ON contao.* TO 'contao'@'localhost';"
 
+RUN echo "[mysqld]" >>/etc/mysql/conf.d/mariadb.cnf
 RUN echo "innodb_large_prefix = ON" >>/etc/mysql/conf.d/mariadb.cnf
 RUN echo "innodb_file_format = Barracuda" >>/etc/mysql/conf.d/mariadb.cnf
 RUN echo "innodb_file_per_table = 1" >>/etc/mysql/conf.d/mariadb.cnf
