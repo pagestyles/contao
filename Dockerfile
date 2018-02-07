@@ -2,7 +2,7 @@ FROM php:apache
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-    apt-get install -y supervisor mariadb-server git libicu-dev libwebp-dev libjpeg-dev libpng-dev libXpm-dev zip
+    apt-get install -y supervisor mariadb-server git libicu-dev libwebp-dev libjpeg-dev libpng-dev libxpm-dev zip
 RUN docker-php-ext-install gd intl pdo_mysql
 RUN echo 'pdo_mysql.default_socket = "/var/run/mysqld/mysqld.sock"' >>/usr/local/etc/php/conf.d/docker-php-ext-pdo_mysql.ini
 RUN a2enmod rewrite
